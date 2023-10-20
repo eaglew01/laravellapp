@@ -2,6 +2,12 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\DBAL\TimestampType;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
+
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,11 +18,33 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
+        DB::table('users')->insert([
+            'name' => 'Test',
+            'email' => 'test@gmail.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => Carbon::now()    ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        DB::table('vacancies')->insert([
+            'title' => 'Dit is vacature 1',
+            'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
+
+            At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
+            'user_id' => 1,
+
+        ]);
+
+        DB::table('vacancies')->insert([
+            'title' => 'Dit is vacature 2',
+            'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
+
+            At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
+            'user_id' => 1,
+
+        ]
+
+
+        );
     }
+
+
 }
