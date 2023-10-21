@@ -16,8 +16,9 @@ use App\Http\Controllers\VacancyController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('vacancyHome');
 });
+Route::get('/', [VacancyController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
