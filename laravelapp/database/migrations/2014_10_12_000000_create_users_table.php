@@ -17,10 +17,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_admin')->default(false);
+            $table->date('birthday')->default('2000-01-01');
+            $table->text('aboutMe')->default('Ik heb niets ingevuld');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-        });
+            //$table -> binary('avatar')->nullable;
+                        });
     }
 
     /**

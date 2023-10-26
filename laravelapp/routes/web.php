@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacancyController;
 
@@ -18,6 +19,13 @@ use App\Http\Controllers\VacancyController;
 Route::get('/', function () {
     return view('vacancyHome');
 });
+
+Route::get('profileAll', function () {
+    return view('profileAll');
+})->name('profileAll');
+Route::get('profileAll', [UserController::class,'showProfile'])->name('profileAll');
+Route::get('/get-user-data/{id}', [UserController::class, 'getUserData']);
+
 Route::get('/', [VacancyController::class, 'index']);
 
 Route::get('/dashboard', function () {
@@ -27,7 +35,7 @@ Route::get('/dashboard', function () {
 Route::get('/vacancy', function () {
     return view('vacancy');
 })->middleware(['auth', 'verified'])->name('vacancy');
-Route::get('/vacancy', [VacancyController::class, 'index']);
+//Route::get('/vacancy', [VacancyController::class, 'index']);
 
 Route::get('/vacancy', [VacancyController::class, 'index'])->name('vacancy');
 

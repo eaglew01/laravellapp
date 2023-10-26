@@ -19,10 +19,29 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         DB::table('users')->insert([
-            'name' => 'Test',
-            'email' => 'test@gmail.com',
+            'name' => 'admin',
+            'email' => 'admin@ehb.be',
+            'password' => Hash::make('Password!321'),
+            'email_verified_at' => Carbon::now(),
+            'is_admin' => true,
+            'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
+            'aboutME' => 'Ik ben de admin account die verplicht werd toegevoegd.'
+        
+        
+        ]);
+        
+        DB::table('users')->insert([
+            'name' => 'eaglew',
+            'email' => 'wouterdecleer@hotmail.com',
             'password' => Hash::make('password'),
-            'email_verified_at' => Carbon::now()    ]);
+            'email_verified_at' => Carbon::now(),
+            'is_admin' => true,
+            'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
+            'aboutME' => 'Ik ben de admin account van de Laravel developer'
+        
+        
+        ]);
+
 
         DB::table('vacancies')->insert([
             'title' => 'Dit is vacature 1',
@@ -30,8 +49,8 @@ class DatabaseSeeder extends Seeder
 
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 1,
-
-        ]);
+            'created_at'=> Carbon::now(),
+                  ]);
 
         DB::table('vacancies')->insert([
             'title' => 'Dit is vacature 2',
@@ -39,6 +58,7 @@ class DatabaseSeeder extends Seeder
 
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 1,
+            'created_at'=> Carbon::now(),
 
         ]
 

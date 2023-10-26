@@ -12,12 +12,16 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    @if (Auth::user())
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
+                    
                         <x-nav-link :href="route('vacancy')" :active="request()->routeIs('vacancy')">
                             {{ __('Vacancies') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('profileAll')" :active="request()->routeIs('profileAll')">
+                            {{ __('Profiles') }}
+                        </x-nav-link>
+                        @if (Auth::user() && Auth::user()->is_admin)
+                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
                         </x-nav-link>
                     @endif
                 </div>
