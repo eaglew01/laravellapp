@@ -19,11 +19,7 @@
                         <x-nav-link :href="route('profileAll')" :active="request()->routeIs('profileAll')">
                             {{ __('Profiles') }}
                         </x-nav-link>
-                        {{-- @if (Auth::user() && Auth::user()->is_admin)
-                        <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                            {{ __('Dashboard') }}
-                        </x-nav-link>
-                        @endif --}}
+
                         @if (Auth::user() && Auth::user()->is_admin)
                         <x-nav-link :href="route('vacancies.index')" :active="request()->routeIs('vacancies.index')">
                           {{ __('Dashboard') }}

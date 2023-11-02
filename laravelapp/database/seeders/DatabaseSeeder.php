@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@ehb.be',
             'password' => Hash::make('Password!321'),
             'email_verified_at' => Carbon::now(),
-            'is_admin' => true,
+            'is_admin' => 1,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
             'aboutME' => 'Ik ben de admin account die verplicht werd toegevoegd.'
         
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'wouterdecleer@hotmail.com',
             'password' => Hash::make('password'),
             'email_verified_at' => Carbon::now(),
-            'is_admin' => true,
+            'is_admin' => 1,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
             'aboutME' => 'Ik ben de admin account van de Laravel developer'
         

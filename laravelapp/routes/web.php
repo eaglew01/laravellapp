@@ -3,7 +3,6 @@
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-use App\Models\Vacancy;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacancyController;
 
@@ -56,5 +55,7 @@ Route::middleware('auth')->group(function () {
 Route::resource('companies', CompanyController::class);
 
 Route::resource('/vacancies', VacancyController::class);
+
+Route::resource('/users', UserController::class);
 
 require __DIR__.'/auth.php';
