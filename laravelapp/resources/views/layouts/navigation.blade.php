@@ -19,6 +19,9 @@
                         <x-nav-link :href="route('profileAll')" :active="request()->routeIs('profileAll')">
                             {{ __('Profiles') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('contact')" :active="request()->routeIs('contact')">
+                            {{ __('Contact') }}
+                        </x-nav-link>
 
                         @if (Auth::user() && Auth::user()->is_admin)
                         <x-nav-link :href="route('vacancies.index')" :active="request()->routeIs('vacancies.index')">

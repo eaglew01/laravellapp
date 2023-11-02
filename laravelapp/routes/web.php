@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -57,5 +58,8 @@ Route::resource('companies', CompanyController::class);
 Route::resource('/vacancies', VacancyController::class);
 
 Route::resource('/users', UserController::class);
+
+Route::get('/contact', [ContactUsFormController::class, 'createForm'])->name('contact');
+Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name('contact.store');
 
 require __DIR__.'/auth.php';
