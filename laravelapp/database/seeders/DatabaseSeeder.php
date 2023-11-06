@@ -60,10 +60,51 @@ class DatabaseSeeder extends Seeder
             'user_id' => 2,
             'created_at'=> Carbon::now(),
 
-        ]
+        ]);
 
 
-        );
+        DB::table('categories')->insert([
+            'name' => 'login',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        
+        
+        ]);
+
+        DB::table('categories')->insert([
+            'name' => 'vacancy',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        
+        
+        ]);
+
+        
+        DB::table('faqs')->insert([
+            'question' => 'Mijn login werkt niet.',
+            'answer' => 'Kijk in jouw inbox bij ongewenste e-mails',
+            'category_id' => 1,
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        
+        
+        ]);
+
+        DB::table('faqs')->insert([
+            'question' => 'Mijn login werkt nog niet.',
+            'answer' => 'Herstuur de verificatie mail.',
+            'category_id' => 1,
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
+        DB::table('faqs')->insert([
+            'question' => 'Mijn vacuture werkt nog niet.',
+            'answer' => 'Klik op de knop submit',
+            'category_id' => 2,
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 
 
