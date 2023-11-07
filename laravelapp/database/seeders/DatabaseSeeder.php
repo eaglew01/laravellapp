@@ -79,6 +79,14 @@ class DatabaseSeeder extends Seeder
         
         ]);
 
+        DB::table('categories')->insert([
+            'name' => 'unknown',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        
+        
+        ]);
+
         
         DB::table('faqs')->insert([
             'question' => 'Mijn login werkt niet.',

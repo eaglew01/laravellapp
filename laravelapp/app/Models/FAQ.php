@@ -9,7 +9,7 @@ class FAQ extends Model
 {
     use HasFactory;
     protected $table = 'faqs';
-
+    protected $fillable = ['question', 'answer', 'category_id'];
     public function category()
     {
         return $this->belongsTo(Category::class);

@@ -20,11 +20,6 @@ use App\Http\Controllers\VacancyController;
 |
 */
 
-// Route::get('/', function () {
-//     $vacancies = Vacancy::all();
-//     return view('vacancyHome', ['vacancies' => $vacancies]);
-// });
-
 Route::get('/', [VacancyController::class, 'getAll']);
 
 Route::get('profileAll', function () {
@@ -41,11 +36,6 @@ Route::get('/dashboard', function () {
 
 Route::resource('vacancies', VacancyController::class)
     ->middleware(['auth', 'verified']);
-
-// Route::get('/vacancy', function () {
-//     return view('vacancy');
-// })->middleware(['auth', 'verified'])->name('vacancy');
-// //Route::get('/vacancy', [VacancyController::class, 'index']);
 
 Route::get('/vacancy', [VacancyController::class, 'getAll'])->name('vacancy');
 
