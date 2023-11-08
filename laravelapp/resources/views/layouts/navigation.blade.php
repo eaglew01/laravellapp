@@ -26,9 +26,9 @@
                             {{ __('FAQ') }}
                         </x-nav-link>
 
-                        @if (Auth::user() && Auth::user()->is_admin)
-                        <x-nav-link :href="route('vacancies.index')" :active="request()->routeIs('vacancies.index')">
-                          {{ __('Dashboard') }}
+                        @if (Auth::user() && Auth::user()->permissions)
+                        <x-nav-link :href="route('admin')">
+                          {{ __('Admin Pannel') }}
                         </x-nav-link>
                         @endif
                 </div>

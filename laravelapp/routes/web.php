@@ -6,6 +6,8 @@ use App\Http\Controllers\ContactUsFormController;
 use App\Http\Controllers\FAQController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Orchid\Screens\TaskScreen;
+use App\Orchid\Screens\VacancyScreen;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacancyController;
 
@@ -56,5 +58,7 @@ Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name
 
 Route::resource('categories', CategoryController::class);
 Route::resource('faqs', FAQController::class);
+
+
 
 require __DIR__.'/auth.php';
