@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('answer')->nullable(); 
             $table->unsignedBigInteger('category_id')->nullable();
             $table->timestamps();
+            $table->boolean('verified')->default(false);
             $table->foreign('category_id')->references('id')->on('categories');
         });
     }

@@ -12,7 +12,7 @@ class FAQ extends Model
     use HasFactory;
     use AsSource, Filterable;
     protected $table = 'faqs';
-    protected $fillable = ['question', 'answer', 'category_id'];
+    protected $fillable = ['question', 'answer', 'category_id', 'verified'];
     public function category()
     {
         return $this->belongsTo(Category::class);

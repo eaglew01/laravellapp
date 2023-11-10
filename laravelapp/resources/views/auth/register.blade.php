@@ -23,6 +23,14 @@
             <x-input-error :messages="$errors->get('birthday')" class="mt-2" />
         </div>
 
+         <!-- About me -->
+         <div class="mt-4">
+            <x-input-label for="aboutMe" :value="__('About Me')" />
+            <x-text-input id="aboutMe" class="block mt-1 w-full" type="text" name="aboutMe" :value="old('aboutMe')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('aboutMe')" class="mt-2" />
+        </div>        
+        
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />

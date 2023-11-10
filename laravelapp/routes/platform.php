@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\CategoryScreen;
 use App\Orchid\Screens\Examples\ExampleActionsScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -109,7 +110,6 @@ Route::screen('/examples/cards', ExampleCardsScreen::class)->name('platform.exam
 
 Route::screen('vacancy2', VacancyScreen::class)->name('platform.vacancy2');
 
-
 Route::screen('task', TaskScreen::class)
     ->name('platform.task')
     ->breadcrumbs(function (Trail $trail){
@@ -118,7 +118,7 @@ Route::screen('task', TaskScreen::class)
             ->push('Task');
     });
 
-    Route::screen('post/{post?}', PostEditScreen::class)
+Route::screen('post/{post?}', PostEditScreen::class)
     ->name('platform.post.edit');
 
 Route::screen('posts', PostListScreen::class)

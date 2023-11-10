@@ -59,6 +59,8 @@ Route::post('/contact', [ContactUsFormController::class, 'ContactUsForm'])->name
 Route::resource('categories', CategoryController::class);
 Route::resource('faqs', FAQController::class);
 
-
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
 
 require __DIR__.'/auth.php';

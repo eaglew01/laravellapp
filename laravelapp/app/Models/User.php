@@ -17,8 +17,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'aboutMe',
+        'birthday',
         'password',
         'permissions',
+        'avatar',
     ];
 
     /**
@@ -51,6 +54,8 @@ class User extends Authenticatable
            'id'         => Where::class,
            'name'       => Like::class,
            'email'      => Like::class,
+           'aboutMe'    => Like::class,
+           'birthday'   => Like::class,
            'updated_at' => WhereDateStartEnd::class,
            'created_at' => WhereDateStartEnd::class,
     ];

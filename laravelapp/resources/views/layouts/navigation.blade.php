@@ -25,12 +25,19 @@
                         <x-nav-link :href="route('faqs.index')" :active="request()->routeIs('faqs')">
                             {{ __('FAQ') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('about')" :active="request()->routeIs('about')">
+                            {{ __('About') }}
+                        </x-nav-link>
 
                         @if (Auth::user() && Auth::user()->permissions)
+                        <x-nav-link :href="url(env('DASHBOARD_PREFIX', '/admin') . '/main')">Admin</x-nav-link>
+                        @endif
+
+                        {{-- @if (Auth::user() && Auth::user()->permissions)
                         <x-nav-link :href="route('admin')">
                           {{ __('Admin Pannel') }}
                         </x-nav-link>
-                        @endif
+                        @endif --}}
                 </div>
 
                 

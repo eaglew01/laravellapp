@@ -28,6 +28,22 @@
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
+        <div>
+            <x-input-label for="birthday" :value="__('Birthday')" />
+            <x-text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', $user->birthday)" required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('birthday')" />
+        <div>
+            <x-input-label for="aboutMe" :value="__('About Me')" />
+            <x-text-input id="aboutMe" name="aboutMe" type="text" class="mt-1 block w-full" :value="old('aboutMe', $user->aboutMe)" required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('aboutMe')" />
+        
+        <div>
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" required />
+            <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
+                </div>
+
+            
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
                 <div>
                     <p class="text-sm mt-2 text-gray-800 dark:text-gray-200">

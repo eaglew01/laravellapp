@@ -31,7 +31,7 @@ class FaqResource extends Resource
     public function fields(): array
     {
         return [
-       
+
         Input::make('question')
             ->title('Question')
             ->placeholder('Enter question here'),
@@ -45,6 +45,9 @@ class FaqResource extends Resource
             ->empty('Select Category')
             ->required(),
 
+        Input::make('verified')
+            ->title('Verify question')
+            ->placeholder('0 or 1'),
 
         ];
     }
@@ -61,16 +64,16 @@ class FaqResource extends Resource
             TD::make('question'),
             TD::make('answer'),
             TD::make('category_id'),
+            TD::make('verified'),
+            // TD::make('created_at', 'Date of creation')
+            //     ->render(function ($model) {
+            //         return $model->created_at->toDateTimeString();
+            //     }),
 
-            TD::make('created_at', 'Date of creation')
-                ->render(function ($model) {
-                    return $model->created_at->toDateTimeString();
-                }),
-
-            TD::make('updated_at', 'Update date')
-                ->render(function ($model) {
-                    return $model->updated_at->toDateTimeString();
-                }),
+            // TD::make('updated_at', 'Update date')
+            //     ->render(function ($model) {
+            //         return $model->updated_at->toDateTimeString();
+            //     }),
         ];
     }
 

@@ -18,6 +18,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        
+        DB::table('roles')->insert([
+            'slug' => 'administrator',
+            'name' => 'administrator',
+            'permissions' => '{"platform.systems.attachment":"1","platform.systems.roles":"1","platform.systems.users":"1","platform.index":"1"}',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@ehb.be',
@@ -25,20 +34,23 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => Carbon::now(),
             'is_admin' => 1,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
-            'aboutME' => 'Ik ben de admin account die verplicht werd toegevoegd.'
-        
+            'aboutME' => 'Ik ben de admin account die verplicht werd toegevoegd.',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
+            'permissions' => '{"platform.systems.roles":true,"platform.systems.users":true,"platform.systems.attachment":true,"platform.index":true}'
         
         ]);
-        
+
         DB::table('users')->insert([
             'name' => 'eaglew',
             'email' => 'wouterdecleer@hotmail.com',
             'password' => Hash::make('password'),
             'email_verified_at' => Carbon::now(),
-            'is_admin' => 1,
+            'is_admin' => 0,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
-            'aboutME' => 'Ik ben de admin account van de Laravel developer'
-        
+            'aboutME' => 'Ik ben de admin account van de Laravel developer',
+            'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
         
         ]);
 
@@ -50,6 +62,7 @@ class DatabaseSeeder extends Seeder
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 1,
             'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
                   ]);
 
         DB::table('vacancies')->insert([
@@ -59,6 +72,7 @@ class DatabaseSeeder extends Seeder
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 2,
             'created_at'=> Carbon::now(),
+            'updated_at' => Carbon::now(),
 
         ]);
 
@@ -113,6 +127,9 @@ class DatabaseSeeder extends Seeder
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         ]);
+
+
+
     }
 
 
