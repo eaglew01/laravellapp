@@ -15,7 +15,7 @@
             <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
-
+        {{-- 
          <!-- Birthday -->
          <div class="mt-4">
             <x-input-label for="birthday" :value="__('Birthday')" />
@@ -28,8 +28,14 @@
             <x-input-label for="aboutMe" :value="__('About Me')" />
             <x-text-input id="aboutMe" class="block mt-1 w-full" type="text" name="aboutMe" :value="old('aboutMe')" required autocomplete="username" />
             <x-input-error :messages="$errors->get('aboutMe')" class="mt-2" />
-        </div>        
+        </div>         --}}
         
+        {{-- <div class="mt-4">
+            <x-input-label for="avatar" :value="__('Avatar')" />
+            <input id="avatar" class="block mt-1 w-full" type="file" name="avatar" :value="old('avatar')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('avatar')" class="mt-2" />
+        </div> --}}
+
 
         <!-- Password -->
         <div class="mt-4">

@@ -37,11 +37,11 @@
             <x-text-input id="aboutMe" name="aboutMe" type="text" class="mt-1 block w-full" :value="old('aboutMe', $user->aboutMe)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('aboutMe')" />
         
-        <div>
+        {{-- <div>
             <x-input-label for="avatar" :value="__('Avatar')" />
             <input id="avatar" name="avatar" type="file" class="mt-1 block w-full" :value="old('avatar', $user->avatar)" required />
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
-                </div>
+                </div> --}}
 
             
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())

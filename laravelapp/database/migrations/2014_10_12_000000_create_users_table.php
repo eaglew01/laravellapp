@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->boolean('is_admin')->default(false);
             $table->date('birthday')->default('2000-01-01');
-            $table->text('aboutMe')->nullable();
+            $table->longtext('aboutMe')->nullable();
             $table->string('avatar')->nullable();
             $table->string('password');
             $table->rememberToken();
