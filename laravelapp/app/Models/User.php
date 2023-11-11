@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 use Orchid\Filters\Types\Like;
 use Orchid\Filters\Types\Where;
 use Orchid\Filters\Types\WhereDateStartEnd;
@@ -11,7 +13,7 @@ use Orchid\Platform\Models\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
     /**
      * The attributes that are mass assignable.
      *
@@ -46,6 +48,7 @@ class User extends Authenticatable
     protected $casts = [
         'permissions'          => 'array',
         'email_verified_at'    => 'datetime',
+        'password'              => 'hashed',
     ];
 
     /**
