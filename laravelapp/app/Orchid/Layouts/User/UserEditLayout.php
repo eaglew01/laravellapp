@@ -30,6 +30,24 @@ class UserEditLayout extends Rows
                 ->required()
                 ->title(__('Email'))
                 ->placeholder(__('Email')),
+
+            Input::make('user.aboutMe')
+                ->type('longtext')
+                ->required()
+                ->title(__('About Me'))
+                ->placeholder(__('About me')),
+            
+                Input::make('user.birthday')
+                ->type('date')
+                ->required()
+                ->title(__('Birthday'))
+                ->placeholder(__('Birthday')),
+
+                Input::make('user.image')
+                ->type('file')
+
+                ->title(__('Avatar'))
+
         ];
     }
 }

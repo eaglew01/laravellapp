@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Layouts\User;
 
+use Illuminate\Support\Facades\Auth;
 use Orchid\Platform\Models\User;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
@@ -45,17 +46,39 @@ class UserListLayout extends Table
                     ->asyncParameters([
                         'user' => $user->id,
                     ])),
+            TD::make('aboutMe', __('About Me'))
+                ->sort()
+                ->cantHide()
+                ->filter(Input::make())
+                ->render(fn (User $user) => ModalToggle::make($user->aboutMe)),
+            
+            TD::make('image', __('Avatar'))
+                ->sort()
+                ->cantHide()
+                ->filter(Input::make())
+                ->render(function (User $user) {
+                    $imageUrl = asset('storage/images/' . $user->image);
 
-            TD::make('created_at', __('Created'))
+                    return "<img src='{$imageUrl}' alt='{$user->name}' style='max-width: 100px;'>"; // Adjust max-width as needed
+                }),
+
+            
+            TD::make('birthday', __('Birthday'))
                 ->usingComponent(DateTimeSplit::class)
                 ->align(TD::ALIGN_RIGHT)
                 ->defaultHidden()
                 ->sort(),
 
-            TD::make('updated_at', __('Last edit'))
-                ->usingComponent(DateTimeSplit::class)
-                ->align(TD::ALIGN_RIGHT)
-                ->sort(),
+            // TD::make('created_at', __('Created'))
+            //     ->usingComponent(DateTimeSplit::class)
+            //     ->align(TD::ALIGN_RIGHT)
+            //     ->defaultHidden()
+            //     ->sort(),
+
+            // TD::make('updated_at', __('Last edit'))
+            //     ->usingComponent(DateTimeSplit::class)
+            //     ->align(TD::ALIGN_RIGHT)
+            //     ->sort(),
 
             TD::make(__('Actions'))
                 ->align(TD::ALIGN_CENTER)

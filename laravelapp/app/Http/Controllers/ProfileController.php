@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
-// use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+
 class ProfileController extends Controller
 {
     /**
@@ -29,33 +29,34 @@ class ProfileController extends Controller
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {   
         $user = $request->user();
-        $request->user()->fill($request->validated());
+        $user->fill($request->validated());
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
         }
 
-
-        
         // Handle profile picture upload
-        if ($request->hasFile('image')) {
-            $fileName = time() . '.' . $request->image->extension();
-            $filePath = $request->image->storeAs('public/images', $fileName);
+    if ($request->hasFile('image')) {
+    $fileName = time() . '.' . $request->image->extension();
+    $filePath = $request->image->storeAs('public/images', $fileName);
 
-            // Resize the image
-            $resizedImage = Image::make(storage_path("app/$filePath"))
-                ->fit(200, 200)
-                ->save();
+    // Check if the uploaded file is an image
+    $image = Image::make(storage_path("app/$filePath"));
+    
+    if ($image->mime() == 'image/jpeg' || $image->mime() == 'image/png' || $image->mime() == 'image/gif') {
+        // Resize the image
+        $resizedImage = $image->fit(200, 200)->save(storage_path("app/$filePath"));
 
-            // Update the user's image attribute
-            $request->user()->image = $fileName;
+        // Update the user's image attribute
+        $user->image = $fileName;
+    } else {
+        // Handle the case where the uploaded file is not an image
+        return Redirect::back()->withErrors(['image' => 'The uploaded file is not a valid image.'])->withInput();
+    }
 }
 
-       
 
-    
-
-        $request->user()->save();
+        $user->save();
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
@@ -79,5 +80,4 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-
-} 
+}
