@@ -19,7 +19,7 @@ return new class extends Migration
             $table->boolean('is_admin')->default(false);
             $table->date('birthday')->default('2000-01-01');
             $table->longtext('aboutMe')->nullable();
-            $table->string('avatar')->nullable();
+            $table->string('image')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

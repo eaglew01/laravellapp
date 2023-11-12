@@ -19,6 +19,12 @@
                         </select>
                     </div>
                     <form id="profile-form">
+                        
+                        @if($user->image)
+                                    <img src="{{ asset('storage/images/'.$user->image) }}" style="height: 50px;width:100px;">
+                                    @else 
+                                    <span>No image found!</span>
+                                    @endif
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" readonly>
                         <br>

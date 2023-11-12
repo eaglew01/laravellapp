@@ -30,6 +30,9 @@
                     <p>General Laravel Orchid documentation</p>
                     <a href="https://orchid.software/en/docs/">https://orchid.software/en/docs/</a>
                     <br><br>
+                    <p>Laravel 10 and images</p>
+                    <a href="https://www.laravelia.com/post/laravel-10-image-upload-and-display-tutorial">https://www.laravelia.com/post/laravel-10-image-upload-and-display-tutorial</a>
+                    <br><br>
                     <p>AI HELPER</p>
                     <a href="https://chat.openai.com/">https://chat.openai.com/</a>
                 </div>
