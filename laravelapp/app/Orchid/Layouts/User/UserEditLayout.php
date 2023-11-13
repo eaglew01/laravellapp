@@ -37,13 +37,13 @@ class UserEditLayout extends Rows
                 ->title(__('About Me'))
                 ->placeholder(__('About me')),
             
-                Input::make('user.birthday')
+            Input::make('user.birthday')
                 ->type('date')
                 ->required()
                 ->title(__('Birthday'))
                 ->placeholder(__('Birthday')),
 
-                Input::make('user.image')
+            Input::make('user.image')
                 ->type('file')
 
                 ->title(__('Avatar'))

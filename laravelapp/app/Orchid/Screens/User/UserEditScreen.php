@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Orchid\Screens\User;
 
+use App\Http\Requests\ProfileUpdateRequest;
 use App\Orchid\Layouts\Role\RolePermissionLayout;
 use App\Orchid\Layouts\User\UserEditLayout;
 use App\Orchid\Layouts\User\UserPasswordLayout;
@@ -11,6 +12,7 @@ use App\Orchid\Layouts\User\UserRoleLayout;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\Rule;
 use Orchid\Access\Impersonation;
 use Orchid\Platform\Models\User;
@@ -20,6 +22,7 @@ use Orchid\Screen\Screen;
 use Orchid\Support\Color;
 use Orchid\Support\Facades\Layout;
 use Orchid\Support\Facades\Toast;
+use Intervention\Image\Facades\Image;
 
 class UserEditScreen extends Screen
 {
@@ -156,6 +159,10 @@ class UserEditScreen extends Screen
                 'required',
                 Rule::unique(User::class, 'email')->ignore($user),
             ],
+            'user.aboutMe' => 'required|string',
+            'user.birthday' => 'required|date',
+            'user.image' => 'required',
+            
         ]);
 
         $permissions = collect($request->get('permissions'))
@@ -171,6 +178,31 @@ class UserEditScreen extends Screen
             ->fill($request->collect('user')->except(['password', 'permissions', 'roles'])->toArray())
             ->fill(['permissions' => $permissions])
             ->save();
+        $user->aboutMe = $request->input('user.aboutMe');
+        $user->birthday = $request->input('user.birthday');
+        //$user->image = $request->input('image');
+        $user->save();
+
+        // Handle profile picture upload
+        if ($request->hasFile('image')) {
+        $fileName = time() . '.' . $request->image->extension();
+        $filePath = $request->image->storeAs('public/images', $fileName);
+    
+        // Check if the uploaded file is an image
+        $image = Image::make(storage_path("app/$filePath"));
+        
+        if ($image->mime() == 'image/jpeg' || $image->mime() == 'image/png' || $image->mime() == 'image/gif') {
+            // Resize the image
+            $resizedImage = $image->fit(200, 200)->save(storage_path("app/$filePath"));
+    
+            // Update the user's image attribute
+            $user->image = $fileName;
+            $user->save();
+        } else {
+            // Handle the case where the uploaded file is not an image
+            return Redirect::back()->withErrors(['image' => 'The uploaded file is not a valid image.'])->withInput();
+        }
+    }
 
         $user->replaceRoles($request->input('user.roles'));
 

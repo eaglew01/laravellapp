@@ -35,6 +35,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 1,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
             'aboutME' => 'Ik ben de admin account die verplicht werd toegevoegd.',
+            'image' => '7309681.jpg',
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
             'permissions' => '{"platform.systems.roles":true,"platform.systems.users":true,"platform.systems.attachment":true,"platform.index":true}'
@@ -49,6 +50,7 @@ class DatabaseSeeder extends Seeder
             'is_admin' => 0,
             'birthday' => Carbon::createFromFormat('d/m/Y', '14/02/1989')->format('Y-m-d'),
             'aboutME' => 'Ik ben de admin account van de Laravel developer',
+            'image' => '8309183.png',
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
         

@@ -47,9 +47,11 @@ class UserController extends Controller
      {
          $request->validate([
              'name' => 'required',
-            //   'email' => 'required|email|unique:users',
-            //   'birthday' => 'required',
-            //   'aboutMe' => 'nullable',
+              'email' => 'required|email|unique:users',
+              'birthday' => 'required',
+              'aboutMe' => 'nullable',
+              'image' => 'required'
+
          ]);
  
          User::create($request->post());
@@ -83,11 +85,11 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'password' => 'required|min:6',
-            //'email_verified_at' => 'nullable|date',
-            // 'image' =>'nullable',
-            // 'is_admin' => 'boolean', 
-            // 'birthday' => 'date',
-            // 'aboutMe' => 'nullable',
+            'email_verified_at' => 'nullable|date',
+            'image' =>'nullable',
+            'is_admin' => 'boolean', 
+            'birthday' => 'date',
+            'aboutMe' => 'nullable',
         ]);
         
         

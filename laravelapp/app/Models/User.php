@@ -75,6 +75,9 @@ class User extends Authenticatable
         'id',
         'name',
         'email',
+        'aboutMe',
+        'birthday',
+        'image',
         'updated_at',
         'created_at',
     ];
