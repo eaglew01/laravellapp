@@ -161,7 +161,7 @@ class UserEditScreen extends Screen
             ],
             'user.aboutMe' => 'required|string',
             'user.birthday' => 'required|date',
-            'user.image' => 'required',
+            'user.image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             
         ]);
 
@@ -180,35 +180,20 @@ class UserEditScreen extends Screen
             ->save();
         $user->aboutMe = $request->input('user.aboutMe');
         $user->birthday = $request->input('user.birthday');
-        //$user->image = $request->input('image');
+        $user->image = $request->input('image');
         $user->save();
 
-        // Handle profile picture upload
-        if ($request->hasFile('image')) {
-        $fileName = time() . '.' . $request->image->extension();
-        $filePath = $request->image->storeAs('public/images', $fileName);
-    
-        // Check if the uploaded file is an image
-        $image = Image::make(storage_path("app/$filePath"));
-        
-        if ($image->mime() == 'image/jpeg' || $image->mime() == 'image/png' || $image->mime() == 'image/gif') {
-            // Resize the image
-            $resizedImage = $image->fit(200, 200)->save(storage_path("app/$filePath"));
-    
-            // Update the user's image attribute
-            $user->image = $fileName;
-            $user->save();
-        } else {
-            // Handle the case where the uploaded file is not an image
-            return Redirect::back()->withErrors(['image' => 'The uploaded file is not a valid image.'])->withInput();
-        }
-    }
+        // Handle the image upload
+        if ($request->hasFile('user.image')) {
+        $imagePath = $request->file('user.image')->store('images', 'public');
+        $user->image = $imagePath;
 
         $user->replaceRoles($request->input('user.roles'));
 
         Toast::info(__('User was saved.'));
 
         return redirect()->route('platform.systems.users');
+        }
     }
 
     /**
