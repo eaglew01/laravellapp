@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const birthdayField = document.getElementById("birthday");
     const emailField = document.getElementById("email");
     const aboutMeField = document.getElementById("aboutMe");
+    const imageField = document.getElementById("image");
 
     nameDropdown.addEventListener("change", function() {
         console.log('Dropdown change event triggered');
@@ -15,27 +16,28 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then(response => response.json())
                 .then(data => {
                     if (data) {
-
-
                         usernameField.value = data.username;
                         birthdayField.value = data.birthday;
                         emailField.value = data.email;
                         aboutMeField.value = data.aboutMe;
+                        imageField.value = data.image;
                     } else {
                         // Clear the fields if no data is found
                         usernameField.value = "";
                         birthdayField.value = "";
                         emailField.value = "";
                         aboutMeField.value = "";
+                        imageField.value = "";
                     }
                 })
                 .catch(error => console.error(error));
         } else {
             // Clear the fields if no user is selected
-            usernameField.value = "niets";
+            usernameField.value = "";
             birthdayField.value = "";
             emailField.value = "";
             aboutMeField.value = "";
+            imageField.value = "";
         }
     });
 });

@@ -19,12 +19,18 @@
                         </select>
                     </div>
                     <form id="profile-form">
-                        
-                        @if($user->image)
-                                    <img src="{{ asset('storage/images/'.$user->image) }}" style="height: 50px;width:100px;">
-                                    @else 
-                                    <span>No image found!</span>
-                                    @endif
+                        <label for="avatar">Avatar:</label>
+                        <div>
+                            @if($user && $user->image)
+                                <img src="{{ asset('storage/images/'.$user->image) }}" style="height: 50px;width:100px;">
+                            @else 
+                                <span>No image found!</span>
+                            @endif
+                        </div>
+
+                        <label for="image">Image:</label>
+                        <input type="text" id="image" name="image" readonly>
+                        <br>
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" readonly>
                         <br>
@@ -37,10 +43,8 @@
                         <br>
                         <label for="aboutMe">About Me:</label>
                         <textarea id="aboutMe" name="aboutMe" readonly></textarea>
-
                     </form>
                     <script src="{{ asset('js/profile.js') }}"></script>
-   
                 </div>
             </div>
         </div>

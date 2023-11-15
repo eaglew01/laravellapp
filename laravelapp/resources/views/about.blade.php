@@ -11,6 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <H1>GENERAL IDEA</H1>
                     <p>I builded a website where the user can find vacancies.</p>
+                    <p>The admin pannel is availale for the admin@ehb.be user</p>
                     <br>
                     <h1>GITHUB</h1>
                     <p><a href="https://github.com/eaglew01/laravellapp.git">Link to github</a></p>
