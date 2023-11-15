@@ -9,6 +9,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Select;
 use Orchid\Screen\Sight;
 use Orchid\Screen\TD;
+use Orchid\Screen\Fields\Picture;
 
 class VacancyResource extends Resource
 {
@@ -34,10 +35,16 @@ class VacancyResource extends Resource
                 ->title('Body')
                 ->placeholder('Enter body here'),
 
+            Picture::make('image')
+                ->title('Image used for a vacancy')
+                ->storage('public')
+                ->targetId(),
+
+
             Select::make('user_id')
                 ->title('User')
                 ->fromModel(User::class, 'name', 'id')
-                ->empty('Select Category')
+                ->empty('Select User')
                 ->required(),
         ];
     }
@@ -54,7 +61,13 @@ class VacancyResource extends Resource
             TD::make('title'),
             TD::make('body')->width('600px'),
             TD::make('user_id'),
+            TD::make('image'),
+            TD::make('image', 'Image')
+            ->render(function ($model) {
+                $imageUrl = asset("storage/{$model->image}");
 
+            return "<img src='{$imageUrl}' alt='Vacancy Image' style='max-width:100px; max-height:100px;'>";
+            }),
             TD::make('created_at', 'Date of creation')
                 ->render(function ($model) {
                     return $model->created_at->toDateTimeString();
@@ -78,6 +91,7 @@ class VacancyResource extends Resource
             Sight::make('id'),
             Sight::make('title'),
             Sight::make('body'),
+            Sight::make('image'),
             Sight::make('user_id'),
         ];
     }
@@ -103,12 +117,23 @@ class VacancyResource extends Resource
  */
 public function rules(Model $model): array
 {
-    return [
+    $rules = [
         'title' => ['required'],
         'body' => ['required'],
         'user_id' => ['required'],
     ];
+
+    // If the request is for an update (model exists), allow image to be nullable
+    if ($model->exists) {
+        $rules['image'] = ['nullable'];
+    } else {
+        // For create, image is required
+        $rules['image'] = ['required'];
+    }
+
+    return $rules;
+}
 }
 
     
-}
+

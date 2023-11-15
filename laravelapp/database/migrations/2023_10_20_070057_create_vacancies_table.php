@@ -17,6 +17,7 @@ return new class extends Migration
             $table->longText('body');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
+            $table->string('image')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
         });
         

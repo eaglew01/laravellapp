@@ -13,6 +13,9 @@
                     <br>
                     @foreach ($vacancies as $vacancy)
                         <div>
+                            
+                            <img src="{{ asset('storage/images/' . $vacancy->image) }}" alt="{{ $vacancy->id }}" style="max-width: 200px; height: auto;" />
+
                             <h3><strong>{{ $vacancy->title }}</strong></h3>
                             <p>{{ $vacancy->body }}</p>
                             <small>Geplaatst door {{$vacancy->user->name}} op {{ $vacancy->created_at->format('d-m-Y') }} </small>

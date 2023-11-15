@@ -63,6 +63,7 @@ class DatabaseSeeder extends Seeder
 
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 1,
+            'image' => '6419384.png',
             'created_at'=> Carbon::now(),
             'updated_at' => Carbon::now(),
                   ]);
@@ -72,9 +73,10 @@ class DatabaseSeeder extends Seeder
             'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
 
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
+            'image' => '3845424687.jpg',
             'user_id' => 2,
-            'created_at'=> Carbon::now(),
-            'updated_at' => Carbon::now(),
+            'created_at'=> Carbon::yesterday(),
+            'updated_at' => Carbon::yesterday(),
 
         ]);
 
