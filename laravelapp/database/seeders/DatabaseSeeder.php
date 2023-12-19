@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Carbon;
+use App\Models\Category;
+use App\Models\Vacancy;
+
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -17,7 +20,9 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {
+    {   
+
+
         
         DB::table('roles')->insert([
             'slug' => 'administrator',
@@ -57,28 +62,65 @@ class DatabaseSeeder extends Seeder
         ]);
 
 
-        DB::table('vacancies')->insert([
+
+
+
+        // DB::table('vacancies')->insert([
+        //     'title' => 'Dit is vacature 1',
+        //     'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
+
+        //     At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
+        //     'user_id' => 1,
+        //     'image' => '6419384.png',
+        //     'created_at'=> Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        //           ]);
+
+        // DB::table('vacancies')->insert([
+        //     'title' => 'Dit is vacature 2',
+        //     'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
+
+        //     At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
+        //     'image' => '3845424687.jpg',
+        //     'user_id' => 2,
+        //     'created_at'=> Carbon::yesterday(),
+        //     'updated_at' => Carbon::yesterday(),
+
+        // ]);
+            
+
+        $categoryIT = Category::create(['name' => 'IT']);
+        $categorySystemManagement = Category::create(['name' => 'System Management']);
+        $categoryProgramming = Category::create(['name' => 'Programming']);
+
+        // Create vacancies
+        $vacancy1 = Vacancy::create([
             'title' => 'Dit is vacature 1',
             'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
 
             At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 1,
             'image' => '6419384.png',
-            'created_at'=> Carbon::now(),
+            'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
-                  ]);
+        ]);
 
-        DB::table('vacancies')->insert([
+        // Attach categories to vacancies
+        $vacancy1->categories()->attach([$categoryIT->id, $categoryProgramming->id]);
+
+        $vacancy2 = Vacancy::create([
             'title' => 'Dit is vacature 2',
             'body' => 'In a world where technology continues to shape our lives, the importance of adaptability cannot be overstated. From the moment we wake up, we interact with devices that have become extensions of ourselves. Smartphones, tablets, and laptops are the gateways to information, connecting us to the vast digital realm. The rapid evolution of these technologies challenges us to keep pace, and this dynamic landscape demands constant learning and flexibility.
 
-            At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
-            'image' => '3845424687.jpg',
+            //     At the same time, amidst the digital chaos, the allure of nature and simplicity remains undiminished. The soothing rustle of leaves in a forest, the majesty of a mountain range, and the beauty of a starry night sky offer respite from the digital deluge. Balancing our tech-savvy lives with a touch of nature has become essential for our well-being.',
             'user_id' => 2,
-            'created_at'=> Carbon::yesterday(),
+            'image' => '3845424687.jpg',
+            'created_at' => Carbon::yesterday(),
             'updated_at' => Carbon::yesterday(),
-
         ]);
+
+        // Attach categories to vacancies
+        $vacancy2->categories()->attach([$categoryIT->id, $categorySystemManagement->id]);
 
 
         DB::table('categories')->insert([

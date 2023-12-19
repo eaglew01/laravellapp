@@ -19,9 +19,16 @@ class Vacancy extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
+
     public function createOrUpdate(Request $request)
 {
     $this->vacancy->fill($request->get('vacancy'))->save();
+
+    $this->categories()->sync($request->input('categories', []));
 
     $this->vacancy->attachment()->syncWithoutDetaching(
         $request->input('vacancy.image', [])

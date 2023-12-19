@@ -11,7 +11,7 @@ use Orchid\Screen\AsSource;
 class Category extends Model
 {
     use HasFactory, AsSource,  Filterable;
-
+    protected $fillable = ['name'];
 
     public function faqs()
     {

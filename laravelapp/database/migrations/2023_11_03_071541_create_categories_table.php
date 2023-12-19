@@ -16,6 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+
+        Schema::create('category_vacancy', function (Blueprint $table) {
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('vacancy_id')->constrained();
+            $table->primary(['category_id', 'vacancy_id']);
+            $table->timestamps();
+        });
     }
 
     /**
